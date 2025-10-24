@@ -1,0 +1,20 @@
+1. Web Development Basics:
+Web development: is the process of creating and maintaining websites or web applications that run on the internet. 
+It involves everything from designing how a website looks (front-end) to building how it works behind the scenes (back-end)
+
+2. HTML Knowledge:
+Yes I have heard of HTML and is stands for Hypertext Markup Language. It defines the structure of the web page
+
+3. CSS Understanding:
+Yes I have heard of CSS and is stands for Cascading Style Sheet. It's used for design and layout
+
+4. Introduction to JavaScript:
+Yes I have heard of JavaScript, JavaScript is the brain of a web page. It allows you to make your website interactive and dynamic.
+
+5. React and Node.js Awareness:
+Yes I have heard of React and Nodejs.
+    React is a Front-end library developed by Facebook for building single-page applications (SPAs).
+    Node.js is a JavaScript runtime environment that allows developers to run JavaScript on the server side. Building back-end servers and APIs
+
+6. I want to learn web development to create solutions to everyday lives through tech. 
+and what in hope to archive is to gain in-demand technical skills that open up opportunities for remote or freelance work in the tech industry.
