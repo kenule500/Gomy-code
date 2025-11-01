@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      padding: 1rem 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #00bcd4;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #222;
+      border-bottom: 2px solid #00bcd4;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: white;
+      margin-top: 2rem;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .contact-form button {
+      background: #00bcd4;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .contact-form button:hover {
+      background: #0097a7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I'm <strong>John Doe</strong>, a passionate full-stack developer with a love for creating clean, efficient, and user-friendly web applications. I specialize in building modern web experiences using technologies like React, Node.js, and TypeScript.</p>
+    <p>When I’m not coding, I enjoy exploring new technologies, reading tech blogs, and contributing to open-source projects.</p>
+  </section>
+
+  <section id="work">
+    <h2>My Work</h2>
+    <ul>
+      <li><strong>Project 1:</strong> Task Management App — A real-time task organizer built with React and Firebase.</li>
+      <li><strong>Project 2:</strong> E-commerce Platform — Full-featured online store using Node.js, MongoDB, and Stripe for payments.</li>
+      <li><strong>Project 3:</strong> Portfolio Website — Personal responsive site showcasing my skills and projects.</li>
+    </ul>
+  </section>
+
+  <section id="resume">
+    <h2>Resume</h2>
+    <p><strong>Education:</strong> B.Sc. in Computer Science, XYZ University</p>
+    <p><strong>Skills:</strong></p>
+    <ul>
+      <li>Frontend: HTML, CSS, JavaScript, React, Next.js</li>
+      <li>Backend: Node.js, Express, Prisma</li>
+      <li>Database: PostgreSQL, MongoDB</li>
+      <li>Other Tools: Git, Docker, TailwindCSS</li>
+    </ul>
+    <p><a href="#" target="_blank">Download My Resume (PDF)</a></p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>If you'd like to work together or just say hello, feel free to send me a message!</p>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 John Doe. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
