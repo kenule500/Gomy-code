@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delicious Bites Menu</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Move toggle outside container so CSS sibling selector works -->
+  <input type="checkbox" id="darkmode-toggle" class="theme-toggle" />
+
+  <div class="container">
+    <div class="theme-toggle-container">
+      <label for="darkmode-toggle" class="theme-toggle-label">
+        <span class="theme-toggle-slider"></span>
+        <span class="theme-toggle-text">Dark Mode</span>
+      </label>
+    </div>
+
+    <header class="header">
+      <h1 class="restaurant-name">Delicious Bites Menu</h1>
+      <div class="decoration-line"></div>
+    </header>
+
+    <main class="menu-content">
+      <section class="menu-section">
+        <h2 class="section-title">Appetizers</h2>
+        <ul class="menu-list">
+          <li class="menu-item">
+            <strong class="item-name">Bruschetta</strong>
+            <p class="item-description">Toasted bread topped with fresh tomatoes, basil, and garlic.</p>
+          </li>
+          <li class="menu-item">
+            <strong class="item-name">Stuffed Mushrooms</strong>
+            <p class="item-description">Mushroom caps filled with herbed cream cheese and breadcrumbs.</p>
+          </li>
+          <li class="menu-item">
+            <strong class="item-name">Spinach Artichoke Dip</strong>
+            <p class="item-description">Creamy blend of spinach, artichokes, and cheeses served with tortilla chips.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="menu-section">
+        <h2 class="section-title">Main Courses</h2>
+        <ul class="menu-list">
+          <li class="menu-item">
+            <strong class="item-name">Grilled Salmon</strong>
+            <p class="item-description">Fresh salmon fillet grilled to perfection with lemon butter sauce.</p>
+          </li>
+          <li class="menu-item">
+            <strong class="item-name">Beef Tenderloin</strong>
+            <p class="item-description">8oz beef tenderloin with roasted vegetables and red wine reduction.</p>
+          </li>
+          <li class="menu-item">
+            <strong class="item-name">Mushroom Risotto</strong>
+            <p class="item-description">Creamy arborio rice with wild mushrooms and parmesan cheese.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="menu-section">
+        <h2 class="section-title">Desserts</h2>
+        <ul class="menu-list">
+          <li class="menu-item">
+            <strong class="item-name">Chocolate Lava Cake</strong>
+            <p class="item-description">Warm chocolate cake with molten chocolate center, served with vanilla ice cream.</p>
+          </li>
+          <li class="menu-item">
+            <strong class="item-name">New York Cheesecake</strong>
+            <p class="item-description">Classic creamy cheesecake with graham cracker crust and berry compote.</p>
+          </li>
+          <li class="menu-item">
+            <strong class="item-name">Tiramisu</strong>
+            <p class="item-description">Layers of coffee-soaked ladyfingers and mascarpone cream, dusted with cocoa.</p>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="contact.html" class="contact-link">Contact Us</a>
+    </footer>
+  </div>
+</body>
+</html>
