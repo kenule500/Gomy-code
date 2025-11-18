@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-cover bg-center h-[60vh] flex items-center justify-center"
+        style="background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1400&q=80');">
+        
+        <div class="bg-black bg-opacity-50 p-10 rounded-lg text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-white">Premium Laptops for Work & Creativity</h1>
+            <p class="text-gray-200 mt-4 text-lg">Discover high-performance devices built for speed, power, and elegance.</p>
+            <button class="mt-6 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+                Shop Now
+            </button>
+        </div>
+    </section>
+
+    <!-- HEADER -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto flex items-center justify-between py-4 px-4">
+            <h1 class="text-2xl font-bold text-indigo-600">LaptopHub</h1>
+
+            <nav class="space-x-6 hidden md:block">
+                <a href="#" class="text-gray-700 hover:text-indigo-600">Home</a>
+                <a href="#" class="text-gray-700 hover:text-indigo-600">Products</a>
+                <a href="#" class="text-gray-700 hover:text-indigo-600">About</a>
+                <a href="#" class="text-gray-700 hover:text-indigo-600">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PRODUCT SECTION -->
+    <section class="flex-grow container mx-auto py-10 px-4">
+        <h2 class="text-3xl font-bold text-center mb-10">Our Featured Laptops</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <!-- Product 1 -->
+            <div class="bg-white rounded-lg shadow p-4 flex flex-col transform hover:-translate-y-2 hover:scale-105 transition duration-300">
+                <img src="https://www.apple.com/newsroom/images/product/mac/standard/Apple-MacBook-Pro-M2-Pro-and-M2-Max-hero-230117_Full-Bleed-Image.jpg.large.jpg" 
+                     class="rounded mb-3 h-40 w-full object-cover" alt="">
+                <h3 class="text-xl font-semibold">MacBook Pro 16&quot; (M2 Pro)</h3>
+                <p class="text-gray-600 mt-2 flex-grow">
+                    Blazing-fast M2 Pro chip with stunning XDR display for pro performance.
+                </p>
+                <p class="text-indigo-600 font-bold text-lg mt-2">$2,499</p>
+                <button class="mt-4 bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">
+                    Shop Now
+                </button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="bg-white rounded-lg shadow p-4 flex flex-col transform hover:-translate-y-2 hover:scale-105 transition duration-300">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1tSUsANxVZx2XNo1ZjQAn3ujPhVn4_459-Q&s"
+                     class="rounded mb-3 h-40 w-full object-cover" alt="">
+                <h3 class="text-xl font-semibold">Dell XPS 15</h3>
+                <p class="text-gray-600 mt-2 flex-grow">
+                    Premium build, ultra-sharp display, and top-tier performance.
+                </p>
+                <p class="text-indigo-600 font-bold text-lg mt-2">$1,899</p>
+                <button class="mt-4 bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">
+                    Shop Now
+                </button>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="bg-white rounded-lg shadow p-4 flex flex-col transform hover:-translate-y-2 hover:scale-105 transition duration-300">
+                <img src="https://img-cdn.tnwcdn.com/image?fit=1200%2C675&height=675&url=https%3A%2F%2Fcdn0.tnwcdn.com%2Fwp-content%2Fblogs.dir%2F1%2Ffiles%2F2021%2F08%2FHP-Spectre-x360-14-1-of-7.jpg&signature=be2373b43e1088c3457ffd4f53fd987a"
+                     class="rounded mb-3 h-40 w-full object-cover" alt="">
+                <h3 class="text-xl font-semibold">HP Spectre x360</h3>
+                <p class="text-gray-600 mt-2 flex-grow">
+                    Stylish 2-in-1 design with exceptional battery life and touchscreen.
+                </p>
+                <p class="text-indigo-600 font-bold text-lg mt-2">$1,499</p>
+                <button class="mt-4 bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">
+                    Shop Now
+                </button>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="bg-white rounded-lg shadow p-4 flex flex-col transform hover:-translate-y-2 hover:scale-105 transition duration-300">
+                <img src="https://m.media-amazon.com/images/I/61nm3dwXAmL._AC_SL1500_.jpg"
+                     class="rounded mb-3 h-40 w-full object-cover" alt="">
+                <h3 class="text-xl font-semibold">Lenovo ThinkPad X1 Carbon</h3>
+                <p class="text-gray-600 mt-2 flex-grow">
+                    Ultra-light premium business laptop with military durability.
+                </p>
+                <p class="text-indigo-600 font-bold text-lg mt-2">$1,799</p>
+                <button class="mt-4 bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">
+                    Shop Now
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-5">
+        <div class="text-center">
+            <p>&copy; 2025 LaptopHub. All rights reserved.</p>
+            <div class="mt-3 space-x-4">
+                <a href="#" class="hover:text-indigo-400">Facebook</a>
+                <a href="#" class="hover:text-indigo-400">Twitter</a>
+                <a href="#" class="hover:text-indigo-400">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
