@@ -1,0 +1,68 @@
+FUNCTION CalculateTotal(CART)
+    TOTAL = 0
+    FOR EACH ITEM IN CART DO
+        TOTAL = TOTAL + (ITEM.price × ITEM.quantity)
+    END FOR
+    RETURN TOTAL
+END FUNCTION
+
+
+FUNCTION CalculateDiscount(TOTAL)
+    COUPON = 0.10
+    DISCOUNT = TOTAL × 0.10
+    RETURN DISCOUNT
+END FUNCTION
+
+
+PROCEDURE LogTransaction(TOTAL, DISCOUNT, FINAL)
+    PRINT "Total Price: ", TOTAL
+    PRINT "Discount: ", DISCOUNT
+    PRINT "Final Amount: ", FINAL
+END PROCEDURE
+
+
+PROCEDURE SendEmail(EMAIL, FINAL)
+    PRINT "Email sent to ", EMAIL, " with total: ", FINAL
+END PROCEDURE
+
+
+
+
+
+FUNCTION SecondLargest(ARR)
+    FIRST = None
+    SECOND = None
+
+    FOR EACH NUM IN ARR DO
+        IF NUM > FIRST THEN
+            SECOND = FIRST
+            FIRST = NUM
+        ELSE IF NUM < FIRST AND NUM > SECOND THEN
+            SECOND = NUM
+        END IF
+    END FOR
+
+    RETURN SECOND OR "No second largest element"
+END FUNCTION
+
+
+
+
+FUNCTION RemoveDuplicates(ARR)
+    INDEX = 0
+
+    WHILE INDEX < LENGTH(ARR) DO
+        VALUE = ARR[INDEX]
+        NEXT_INDEX = INDEX + 1
+
+        WHILE NEXT_INDEX < LENGTH(ARR) DO
+            IF ARR[NEXT_INDEX] = VALUE THEN
+                REMOVE ARR[NEXT_INDEX]   // Shift all elements left
+            ELSE
+                NEXT_INDEX = NEXT_INDEX + 1
+            END IF
+        END WHILE
+
+        INDEX = INDEX + 1
+    END WHILE
+END FUNCTION
