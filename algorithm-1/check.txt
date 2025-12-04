@@ -1,0 +1,24 @@
+SET length 
+SET words        
+SET vowels 
+
+
+READ char
+
+WHILE char ≠ '.':
+    length ← length + 1
+
+    IF char = ' ' THEN
+        words ← words + 1
+    ENDIF
+
+    IF char is a vowel (a, e, i, o, u, A, E, I, O, U) THEN
+        vowels ← vowels + 1
+    ENDIF
+
+    READ next char
+ENDWHILE
+
+PRINT "Length = ", length
+PRINT "Words = ", words
+PRINT "Vowels = ", vowels
