@@ -57,7 +57,7 @@ FUNCTION RemoveDuplicates(ARR)
 
         WHILE NEXT_INDEX < LENGTH(ARR) DO
             IF ARR[NEXT_INDEX] = VALUE THEN
-                REMOVE ARR[NEXT_INDEX]   // Shift all elements left
+                REMOVE ARR[NEXT_INDEX]   
             ELSE
                 NEXT_INDEX = NEXT_INDEX + 1
             END IF
@@ -65,4 +65,86 @@ FUNCTION RemoveDuplicates(ARR)
 
         INDEX = INDEX + 1
     END WHILE
+END FUNCTION
+
+
+
+
+
+
+
+FUNCTION IsValid(S)
+
+    CREATE empty Stack
+
+    FOR EACH character ch IN S DO
+
+        IF ch is '(' OR ch is '{' OR ch is '[' THEN
+            Stack.push(ch)
+
+        ELSE  
+
+            IF Stack is empty THEN
+                RETURN "INVALID"     
+            ENDIF
+
+            top = Stack.peek()
+
+            IF (ch = ')' AND top !== '(') OR
+               (ch = '}' AND top !== '{') OR
+               (ch = ']' AND top !== '[') THEN
+                    RETURN "INVALID"  
+            ENDIF
+
+            Stack.pop()             
+        ENDIF
+
+    END FOR
+
+    IF Stack is empty THEN
+        RETURN "VALID"
+    ELSE
+        RETURN "INVALID"  
+    ENDIF
+
+END FUNCTION
+
+
+
+
+
+
+
+
+FUNCTION FirstNonRepeating()
+
+    CREATE Queue Q        // keeps characters in the order they arrive
+    CREATE freq[]         // freq[x] counts how many times each character appeared
+    SET all freq[x] = 0   // start with all counts at zero
+
+    WHILE reading characters one by one AS ch DO
+
+        // Increase count for this character
+        freq[ch] = freq[ch] + 1
+
+        // If this is the first time we see ch, add it to the queue
+        IF freq[ch] = 1 THEN
+            Q.enqueue(ch)
+        ENDIF
+
+        // Remove characters from the front of the queue that are no longer unique
+        
+        WHILE Q is not empty AND freq[ Q.front() ] > 1 DO
+            Q.dequeue()
+        ENDWHILE
+
+        // The answer after reading ch:
+        IF Q is empty THEN
+            PRINT "null"
+        ELSE
+            PRINT Q.front()     // first non-repeating character
+        ENDIF
+
+    END WHILE
+
 END FUNCTION

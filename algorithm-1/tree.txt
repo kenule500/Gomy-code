@@ -1,0 +1,32 @@
+ALGORITHM BFS(root)
+
+    QUEUE = new empty queue
+    ENQUEUE(QUEUE, root)
+
+    RESULT = empty list
+
+    WHILE QUEUE is not empty DO
+
+        LEVEL_SIZE = size of QUEUE
+        CURRENT_LEVEL = empty list
+
+        FOR i ← 1 TO LEVEL_SIZE DO
+
+            NODE = DEQUEUE(QUEUE)
+            APPEND NODE.name TO CURRENT_LEVEL
+
+            IF NODE has children THEN
+                FOR EACH child IN NODE.children DO
+                    ENQUEUE(QUEUE, child)
+                END FOR
+            END IF
+
+        END FOR
+
+        APPEND CURRENT_LEVEL TO RESULT
+
+    END WHILE
+
+    RETURN RESULT
+
+END ALGORITHM

@@ -22,3 +22,13 @@ ENDWHILE
 PRINT "Length = ", length
 PRINT "Words = ", words
 PRINT "Vowels = ", vowels
+
+
+
+
+
+
+
+
+
+
