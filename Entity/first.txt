@@ -1,0 +1,53 @@
+
+Gymnasium
+
+gym_id (PK)
+name
+address
+phone_number
+
+
+member
+
+member_id (PK)
+last_name
+first_name
+address
+date_of_birth
+gender
+gym_id (FK)
+
+
+Session
+
+session_id (PK)
+sport_type
+schedule
+max_capacity (≤ 20)
+gym_id (FK)
+
+
+
+Coach
+
+coach_id (PK)
+last_name
+first_name
+age
+specialty
+
+
+Gymnasium — Member
+Gymnasium (1) ──── (N) Member
+
+
+Gymnasium — Session
+Gymnasium (1) ──── (N) Session
+
+
+Member — Session (Registration)
+Member (N) ──── (N) Session
+
+
+Session — Coach
+Session (N) ──── (N) Coach

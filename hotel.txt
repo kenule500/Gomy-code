@@ -1,0 +1,9 @@
+TYPE(Type_Id PK, Type_Name)
+
+HOTEL(Hotel_Id PK, Hotel_Name, Type_Id FK)
+
+CATEGORY(Category_Id PK, Category_Name, Price, Beds_Numbers)
+
+ROOM(Room_Id PK, Floor, Hotel_Id FK, Category_Id FK)
+
+EMPLOYEE(Employee_Id PK, Employee_Name, Employee_Speciality, Hotel_Id FK, Leader_Id FK)
