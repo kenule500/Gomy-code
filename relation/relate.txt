@@ -1,0 +1,33 @@
+The Relational Schema
+
+1. Type
+Type_Id (Primary Key)
+Type_Name
+
+
+2. Category
+Category_Id (Primary Key)
+Category_Name
+Price
+Beds_numbers
+
+
+3. Hotel
+Hotel_Id (Primary Key)
+Hotel_name
+Type_Id (Foreign Key referencing Type)
+
+
+4. Room
+Room_Id (Primary Key)
+Floor
+Hotel_Id (Foreign Key referencing Hotel)
+Category_Id (Foreign Key referencing Category)
+
+
+5. Employee
+Employee_Id (Primary Key)
+Employee_Name
+Employee_Speciality
+Hotel_Id (Foreign Key referencing Hotel)
+Lead_Employee_Id (Foreign Key referencing Employee_Id — self-referencing for the "leads" relationship)

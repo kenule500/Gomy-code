@@ -18,3 +18,133 @@ Yes I have heard of React and Nodejs.
 
 6. I want to learn web development to create solutions to everyday lives through tech. 
 and what in hope to archive is to gain in-demand technical skills that open up opportunities for remote or freelance work in the tech industry.
+
+
+
+
+Introduction
+API is the acronym for Application Programming Interface. It is a software intermediary that allows two applications to speak to each other.
+
+An API is a set of programming code that enables data transmission between one software product and another. It also contains the terms of this data exchange.
+
+APIs serve numerous purposes. Generally, they can simplify and speed up software development.
+
+Whenever you use an application like Facebook, send an instant message, or check the weather on your phone, you're using an API.
+
+
+Databases are systematic collections of data. Databases support the storage and manipulation of data. Databases simplify data management.
+
+Let's take Facebook as an example. A social media platform needs to store, manipulate, and present data to its members. It also needs to provide data to the whole network of friends including their activities, their messages, their likes, and much more. If we stored all this data in files, it would be next to impossible to utilize it.
+
+Fortunately, this is where databases come into play.
+
+
+
+Why Do We Need a Database ?
+
+
+Today, companies have to manage large volumes of data while also ensuring data integrity, security, and accuracy.
+
+Spreadsheets are great tools for making calculations and inputting data. But if there’s a requirement to store substantial amounts of data such as customers’ information, employee records, or business inventory, a more efficient data management tool could be the better option. In today’s digital age, substituting spreadsheets with databases is a sure-fire way for business growth.
+
+Types of Databases:
+There are many different types of databases. The best database for a specific organization depends on the organization’s purposes, plans, and projects.
+
+These are the database types:
+
+Relational databases
+Object-oriented databases
+Distributed databases
+Data warehouses
+NoSQL databases
+Graph databases
+OLTP databases
+Database History :
+The history of databases dates back to the 1960s with the appearance of network databases and hierarchical databases. The next era, in the 1980s, saw the appearance of object-oriented databases. Today, the most used databases are SQL, NoSQL and cloud databases.
+
+In this skill, we’ll talk more about SQL and NoSQL databases.
+
+What Is SQL?
+SQL stands for "Structured Query Language".
+
+It's a language that allows communication with databases to properly manage its data.
+
+Is SQL a Programming Language?
+Yes, SQL is a language. It offers looping, logic directives, variables, and so on. However, it’s not a language in the same sense as Java or C++.
+
+SQL may not be a language compared to Java or C#, but it is a language nonetheless.
+
+According to W3Schools: “SQL is a standard language for storing, manipulating and retrieving data in databases.”
+
+
+
+How is SQL used?
+While an application might be programmed in a language like Python, PHP, or Ruby, databases are not designed to recognize these languages. Historically, databases recognize only SQL (although this has changed significantly in recent years). Similar to programming languages, SQL has its own markup. This makes it a priority for a programmer to learn SQL markup before using it effectively. Besides markup, another feature unique to database programming is the concept of tables. A database may be represented as a number of tables. Each table has its own number of columns and rows and represents a set of data.
+
+Example of SQL Database Management
+Imagine a library. We could create a database that stores data about students in the GoMyCode community. In this case, we would need only one table and this table would allow us to store all the information we need. There are a few frequently used SQL commands you should be familiar with. When working with databases, a programmer might write commands such as:
+
+CREATE DATABASE: to create a database.
+CREATE TABLE: to create tables.
+SELECT: to find/extract data from a database.
+UPDATE: to make adjustments and edit data.
+DELETE: to delete data.
+These are just the most common commands. The more complicated the database is, the more commands you as the programmer will need to use.
+
+Here is an example of a database table :
+
+
+What Is NoSQL?
+A NoSQL, which stands for “not only SQL,” originally referring to non SQL or non relational, is a database that provides a mechanism for the storage and retrieval of data.
+
+NoSQL is an approach to database design that provides flexible schemas for the storage and retrieval of data beyond the traditional table structures found in relational databases. While NoSQL databases have existed for many years, it has recently become more popular in the era of cloud, big data, and high-volume web and mobile applications. They are chosen today for their attributes around scale, performance, and ease of use.
+
+The most common types of NoSQL databases are key-value, document, column, and graph databases.
+
+
+
+Examples of NoSQL Databases
+Many NoSQL databases were designed by technology companies like Google, Amazon, Yahoo, and Facebook to provide more effective ways to store content or process data for huge websites. Some of the most popular NoSQL databases include the following:
+
+Apache CouchDB: An open-source, JSON document-based database that uses JavaScript as its query language.
+Apache Cassandra: An open-source, wide-column store database designed to manage large amounts of data across multiple servers and clustering that spans multiple data centers.
+MongoDB: An open-source document-based database that uses JSON-like documents and schema. It is the database component of the MERN stack.
+Redis: A powerful in-memory key-value store used for session caching, message queues, and other specific applications.
+Elasticsearch: A document-based database that includes a full-text search engine.
+What’s the Difference Between SQL and NoSQL?
+The fundamental difference between SQL and NoSQL is not that complicated. Each has a different philosophy for how data should be stored and retrieved.
+
+SQL databases are relational, NoSQL are non-relational.
+SQL databases use structured query language and have a predefined schema. NoSQL databases have dynamic schemas for unstructured data.
+SQL databases are vertically scalable, NoSQL databases are horizontally scalable.
+SQL databases are table based, while NoSQL databases are document, key-value, graph, wide-column stores.
+SQL databases are better for multi-row transactions, NoSQL are better for unstructured data like documents or JSON.
+
+
+Database Management System
+A database typically requires a comprehensive database software program known as a Database Management System (DBMS). A DBMS serves as an interface between the database and its end users or programs. It allows users to retrieve, update, and manage how the information is organized and optimized. A DBMS also facilitates oversight and control of databases, enabling a variety of administrative operations such as performance monitoring, tuning, backup, and recovery.
+
+
+
+Using DBMS Allows Us to:
+Securely store a large volume of data for long periods of time.
+Access data efficiently.
+Control access to data by multiple users at the same time. One user's actions should not affect the other.
+Create new databases as well as specify their schemas.
+Support a data model.
+Query and modify the database’s data.
+Have data redundancy.
+Have more flexibility than the use of files.
+Have data consistency and integrity.
+The Most Known DBMS:
+MySQL: A free and open source DBMS. It is probably the best known DBMS. We will be using it in this section.
+
+PostgreSQL: A free and open source like MySQL but it has more functionality and it is a little less known.
+
+SQLite: A free and open source. It’s lightweight but extremely limited in functionality.
+
+Oracle: A paid database used by large companies. It is undoubtedly one of the most complete DBMSs.
+
+Microsoft SQL Server: Microsoft's DBMS. Microsoft markets at least a dozen different editions of its Microsoft SQL Server. They’re aimed at different audiences and for workloads ranging from small single-machine applications to large Internet-facing applications that have many concurrent users.
+
+Mark as Completed
