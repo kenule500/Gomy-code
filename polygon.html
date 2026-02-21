@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <style>
+        /* Shape 1: ER Entity */
+        .body { padding: 10px; }
+        .step {
+            --arrow-width: 20px;
+            background: #e8f3e8;
+            border: 2px solid #1b5e20;
+            padding: 15px 40px;
+            position: relative;
+            
+            /* The Magic: We use a mask to define the chevron shape */
+            /* This works better than clip-path because it respects the border-box */
+            mask: 
+                linear-gradient(135deg, #000 25%, transparent 25%) -50% 50%,
+                linear-gradient(225deg, #000 25%, transparent 25%) -50% 50%,
+                linear-gradient(45deg, #000 25%, transparent 25%) 100% 50%,
+                linear-gradient(-45deg, #000 25%, transparent 25%) 100% 50%;
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            }
+   
+        </style>
+</head>
+<body>
+  
+
+<div class="container">
+  <div class="step active" style="clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);">01. Personal Details</div>
+  <!-- <div class="step inactive">02. Available Days</div> -->
+</div>
+</body>
+</html>
