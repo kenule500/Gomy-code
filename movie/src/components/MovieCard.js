@@ -1,14 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MovieCard = ({ movie }) => {
-  const { title, description, posterURL, rating } = movie;
   return (
-    <div className="movie-card" style={{ border: '1px solid #ddd', padding: '15px', margin: '10px', borderRadius: '8px', width: '250px' }}>
-      <img src={posterURL} alt={title} style={{ width: '100%', borderRadius: '5px' }} />
-      <h3>{title}</h3>
-      <p style={{ fontSize: '0.9rem', color: '#555' }}>{description}</p>
-      <div style={{ fontWeight: 'bold', color: '#f39c12' }}>Rating: {rating}/10</div>
-    </div>
+    // Link to a dynamic path based on the title
+    <Link to={`/movie/${movie.title}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+      <div className="movie-card" style={{ border: '1px solid #ddd', padding: '15px', margin: '10px', borderRadius: '8px', width: '250px', cursor: 'pointer' }}>
+        <img src={movie.posterURL} alt={movie.title} style={{ width: '100%', borderRadius: '5px' }} />
+        <h3>{movie.title}</h3>
+        <div style={{ fontWeight: 'bold', color: '#f39c12' }}>Rating: {movie.rating}/10</div>
+      </div>
+    </Link>
   );
 };
 
