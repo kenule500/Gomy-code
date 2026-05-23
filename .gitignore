@@ -5,4 +5,7 @@ vitals/node_modules
 life-cycle/node_modules
 movie/node_modules
 snake-game/node_modules
-todo-app\node_modules
+todo-app/node_modules
+slackbolt/node_modules
+slackbolt/.env
+checkpoint61/node_modules
