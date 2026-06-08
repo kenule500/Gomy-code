@@ -1,0 +1,325 @@
+1. Requirement Analysis
+
+Actors
+Actor	        Description
+Librarian	    Administrative staff who manages books (add/remove), views transactions, and manages members.
+Member	        Library user who can search, borrow, and return books.
+System	        (Non-human actor) Automatically calculates fines and checks due dates.
+
+Key Use Cases
+Use Case	        Description	                                    Primary Actor
+Search Book	        Member searches by title, author, or ISBN.	    Member
+Borrow Book	        Member borrows an available book.	            Member
+Return Book	        Member returns a borrowed book.	                Member
+Add Book	        Librarian adds a new book to the collection.	Librarian
+Remove Book	        Librarian removes a book (e.g., lost/damaged).	Librarian
+View Transactions	Librarian sees all borrowing records.	        Librarian
+Calculate Fine	    System automatically calculates overdue fines.	System
+
+2. System Architecture Design
+Major Components
+Layer	                Components	                                                    Responsibilities
+Presentation Layer (UI)	Web/Mobile interface	                                        Accepts user input, displays results
+Business Logic Layer	LibraryFacade, BorrowService, FineCalculator	                Enforces business rules (max books, overdue fines)
+Data Access Layer	    BookRepository, MemberRepository, TransactionRepository	        CRUD operations on data storage
+Data Storage	        Relational database (or in-memory for prototyping)	            Stores books, members, transactions, fines
+
+
+High‑Level Architectural Diagram (Text Description)
+text
+[UI] <--> [API Gateway / Controller]
+                |
+        [Business Logic Layer]
+        (LibraryFacade, BorrowService, FineCalculator)
+                |
+        [Data Access Layer]
+        (Repositories)
+                |
+        [Database]
+
+
+Interaction flow for "Borrow Book":
+UI → Controller → LibraryFacade → BorrowService → BookRepository (check availability) → TransactionRepository (create loan) → response back.
+
+3. Object-Oriented Analysis (OOA)
+3.1 Class Diagram (Key Classes with Attributes & Methods)
+text
++----------------+       +----------------+       +-------------------+
+|     Book       |       |    Member      |       | BorrowTransaction |
++----------------+       +----------------+       +-------------------+
+| - bookId: int  |       | - memberId: int|       | - transactionId   |
+| - title: string|       | - name: string |       | - bookId          |
+| - author: string|      | - email: string|       | - memberId        |
+| - isbn: string |       | - membershipType|      | - borrowDate      |
+| - isAvailable: bool|    | - borrowedBooks|       | - dueDate         |
++----------------+       +----------------+       | - returnDate      |
+| + getDetails() |       | + borrowBook() |       | - fineAmount      |
+| + setAvailable()|      | + returnBook() |       +-------------------+
++----------------+       | + getBorrowed()|       | + calculateFine() |
+                         +----------------+       | + isOverdue()     |
+                                                  +-------------------+
+         ^
+         |
++----------------+       +----------------+
+|  Librarian     |       |    Fine        |
++----------------+       +----------------+
+| - adminId      |       | - fineId       |
+| - name         |       | - transactionId|
++----------------+       | - amount       |
+| + addBook()    |       | - isPaid       |
+| + removeBook() |       +----------------+
+| + viewAllLoans()|      | + markPaid()   |
++----------------+       +----------------+
+Relationships:
+
+A Member can have multiple BorrowTransactions (1 to many).
+
+A Book is involved in many BorrowTransactions (1 to many).
+
+A BorrowTransaction may have one Fine (1 to 0..1).
+
+Librarian inherits from an abstract User (optional, but omitted for simplicity).
+
+3.2 Use Case Diagram (Text Description)
+Actors: Member, Librarian, System (automated fine calculation)
+
+Use cases:
+
+Member: Search Book, Borrow Book, Return Book
+
+Librarian: Add Book, Remove Book, View All Transactions
+
+System: Calculate Overdue Fine (triggered daily/time‑based)
+
+Relationships:
+
+Borrow Book extends Check Member Eligibility (included).
+
+Calculate Overdue Fine is triggered by Return Book or a scheduled job.
+
+3.3 Sequence Diagram for Borrow Book
+text
+Member         UI            Controller    LibraryFacade   BookRepo    TransactionRepo
+  |              |                |              |             |              |
+  |--borrow(bookId)-->|             |              |             |              |
+  |                 |--borrowReq-->|              |             |              |
+  |                 |               |--findBook()--------->|             |
+  |                 |               |              |--book---->|             |
+  |                 |               |<---available-----------|             |
+  |                 |               |--checkMemberEligibility()            |
+  |                 |               |              |             |              |
+  |                 |               |<--eligible---|             |              |
+  |                 |               |--createLoan(bookId, memberId)-------->|
+  |                 |               |              |             |--saveLoan--->|
+  |                 |               |<---loan created-----------|             |
+  |                 |<--success-----|              |             |              |
+  |<--"Borrowed"----|               |              |             |              |
+3.4 Sequence Diagram for Return Book
+text
+Member         UI         Controller    LibraryFacade   TransactionRepo  FineService
+  |              |             |              |               |              |
+  |--return(bookId)-->|          |              |               |              |
+  |                 |--returnReq->|              |               |              |
+  |                 |             |--findActiveLoan(bookId, memberId)----->|
+  |                 |             |<--loan-------|               |              |
+  |                 |             |--calculateFine(loan)--------------------->|
+  |                 |             |<--fineAmount-----------------|              |
+  |                 |             |--markReturned(loanId)-------->|              |
+  |                 |             |<--updated-----|               |              |
+  |                 |<--returnDone(fine)           |               |              |
+  |<--display fine--|             |              |               |              |
+
+
+3.5 State Diagram for Book
+text
+       [Available]
+           |
+           | borrow()
+           v
+       [Issued]  (on loan to a member)
+           |
+           | return()
+           v
+       [Available]
+           |
+           | lost/damaged (admin)
+           v
+       [Lost/Damaged]  (removed from circulation)
+
+       4. Data, Functional, and Behavioral Modeling
+
+4.1 Data Model (Entity-Relationship description)
+Entities and attributes:
+
+Book: book_id (PK), title, author, isbn, is_available (boolean)
+
+Member: member_id (PK), name, email, membership_type (e.g., student, teacher), max_borrow_limit
+
+Loan: loan_id (PK), book_id (FK), member_id (FK), borrow_date, due_date, return_date
+
+Fine: fine_id (PK), loan_id (FK), amount, is_paid
+
+Relationships:
+
+A Member can have many Loans (1:N).
+
+A Book can have many Loans over time (1:N).
+
+A Loan can have at most one Fine (1:0..1).
+
+4.2 Functional Model (What the system does)
+List of functions (operations) grouped by component:
+
+Component	Functions
+Book Management	addBook(), removeBook(), searchBooks(), updateAvailability()
+Member Management	registerMember(), getMemberInfo(), getBorrowedBooks()
+Borrowing	borrowBook(), returnBook(), renewBook()
+Fine Management	calculateFine(), payFine(), checkOverdueLoans()
+Reporting	getAllLoans(), getPopularBooks()
+4.3 Behavioral Model (How the system responds to events)
+We can model the behavior using a State Machine for Loan:
+
+text
+Loan States:
+- ACTIVE: book is borrowed, not yet returned.
+- RETURNED: book returned on time.
+- OVERDUE: active but due date passed.
+- CLOSED_WITH_FINE: returned after due date with fine paid.
+Events and transitions:
+
+Current State	Event	Next State	Action
+(none)	borrow()	ACTIVE	Create loan, set due date
+ACTIVE	return() before due date	RETURNED	Mark return date
+ACTIVE	due date passes (time event)	OVERDUE	Trigger fine calculation
+OVERDUE	return()	CLOSED_WITH_FINE	Calculate fine, mark returned
+OVERDUE	payFine() then return()	CLOSED_WITH_FINE	(or fine paid after return)
+Additionally, a scheduled job (e.g., daily) checks all ACTIVE loans and transitions any with due_date < today() to OVERDUE.
+
+5. Abstraction to Implementation (Pseudocode / Code Snippets)
+Below are simple implementations of core classes in JavaScript to demonstrate how the design translates to code.
+
+5.1 Book Class
+class Book {
+  constructor(id, title, author, isbn) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.isbn = isbn;
+    this.isAvailable = true;
+  }
+
+  getDetails() {
+    return `${this.title} by ${this.author} (ISBN: ${this.isbn})`;
+  }
+
+  setAvailable(status) {
+    this.isAvailable = status;
+  }
+}
+5.2 Member Class
+class Member {
+  constructor(id, name, email, membershipType) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.membershipType = membershipType; // 'student' or 'teacher'
+    this.borrowedBooks = []; // array of bookIds
+  }
+
+  getMaxBorrowLimit() {
+    return this.membershipType === 'student' ? 3 : 10;
+  }
+
+  borrowBook(bookId) {
+    if (this.borrowedBooks.length >= this.getMaxBorrowLimit()) {
+      throw new Error("Borrow limit reached");
+    }
+    this.borrowedBooks.push(bookId);
+  }
+
+  returnBook(bookId) {
+    const index = this.borrowedBooks.indexOf(bookId);
+    if (index !== -1) this.borrowedBooks.splice(index, 1);
+  }
+
+  getBorrowedBooks() {
+    return [...this.borrowedBooks];
+  }
+}
+
+5.3 BorrowTransaction Class
+class BorrowTransaction {
+  constructor(id, bookId, memberId, borrowDate, dueDate) {
+    this.id = id;
+    this.bookId = bookId;
+    this.memberId = memberId;
+    this.borrowDate = borrowDate;
+    this.dueDate = dueDate;
+    this.returnDate = null;
+    this.fineAmount = 0;
+  }
+
+  isOverdue(currentDate = new Date()) {
+    return this.returnDate === null && currentDate > this.dueDate;
+  }
+
+  calculateFine(ratePerDay = 0.50) {
+    if (!this.isOverdue()) return 0;
+    const overdueDays = Math.ceil((new Date() - this.dueDate) / (1000 * 60 * 60 * 24));
+    this.fineAmount = overdueDays * ratePerDay;
+    return this.fineAmount;
+  }
+
+  markReturned(returnDate = new Date()) {
+    this.returnDate = returnDate;
+    if (this.returnDate > this.dueDate) {
+      this.calculateFine();
+    }
+  }
+}
+
+5.4 LibrarySystem (Facade)
+class LibrarySystem {
+  constructor() {
+    this.books = new Map();     // id -> Book
+    this.members = new Map();   // id -> Member
+    this.transactions = [];     // list of BorrowTransaction
+    this.nextTransactionId = 1;
+  }
+
+  addBook(book) { this.books.set(book.id, book); }
+  addMember(member) { this.members.set(member.id, member); }
+
+  borrowBook(memberId, bookId) {
+    const member = this.members.get(memberId);
+    const book = this.books.get(bookId);
+    if (!member || !book) throw new Error("Invalid member or book");
+    if (!book.isAvailable) throw new Error("Book not available");
+    if (member.borrowedBooks.length >= member.getMaxBorrowLimit())
+      throw new Error("Borrow limit exceeded");
+
+    const borrowDate = new Date();
+    const dueDate = new Date();
+    dueDate.setDate(borrowDate.getDate() + 14);
+    const transaction = new BorrowTransaction(
+      this.nextTransactionId++, bookId, memberId, borrowDate, dueDate
+    );
+    this.transactions.push(transaction);
+    member.borrowBook(bookId);
+    book.isAvailable = false;
+    return transaction;
+  }
+
+  returnBook(memberId, bookId) {
+    const transaction = this.transactions.find(
+      t => t.bookId === bookId && t.memberId === memberId && t.returnDate === null
+    );
+    if (!transaction) throw new Error("No active loan found");
+    transaction.markReturned();
+    const book = this.books.get(bookId);
+    if (book) book.isAvailable = true;
+    const member = this.members.get(memberId);
+    if (member) member.returnBook(bookId);
+    return transaction;
+  }
+}
