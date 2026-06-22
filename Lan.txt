@@ -1,0 +1,62 @@
+LOCAL AREA NETWORK (LAN) DESIGN CHECKPOINT SUMMARY
+
+PART 1: MAC & FRAME HANDLING
+----------------------------
+1. MAC Address Assignments:
+- Router (LAN Gateway):  00:1A:2B:3C:4D:01
+- Employee PC 1:        00:1A:2B:3C:4D:11
+- Employee PC 2:        00:1A:2B:3C:4D:12
+- Employee PC 3:        00:1A:2B:3C:4D:13
+- Employee PC 4:        00:1A:2B:3C:4D:14
+- Network Printer:      00:1A:2B:3C:4D:20
+- Wi-Fi Access Point:   00:1A:2B:3C:4D:30
+- Wireless Device 1:    00:1A:2B:3C:4D:31
+- Wireless Device 2:    00:1A:2B:3C:4D:32
+
+2. Frame Structure (PC 1 to Printer):
+- Preamble/SFD: Synchronizes hardware clocks.
+- Destination MAC: 00:1A:2B:3C:4D:20 (Printer)
+- Source MAC: 00:1A:2B:3C:4D:11 (PC 1)
+- EtherType: 0x0800 (Signals IPv4 payload)
+- Payload: Print data + IP/TCP headers.
+- FCS (Frame Check Sequence): CRC error checking.
+
+3. Collision Handling:
+- Wired (CSMA/CD): Devices listen before speaking. If a collision occurs, they halt, send a jam signal, back off randomly, and retry. (Mitigated by full-duplex switches).
+- Wireless (CSMA/CA): Radios cannot listen while transmitting. They avoid collisions using random wait timers (IFS), optional RTS/CTS handshakes, and explicit ACK frame verification.
+
+
+PART 2: IP ADDRESSING & SUBNETTING
+----------------------------------
+Base Network: 192.168.10.0/24 split into two /25 subnets (Mask: 255.255.255.128)
+- Subnet 1 (Wired): 192.168.10.0/25
+- Subnet 2 (Wireless): 192.168.10.128/25
+
+IP Allocation Table:
+Device       | IP Address     | Subnet Mask     | Default Gateway
+-----------------------------------------------------------------
+Router (LAN1)| 192.168.10.1   | 255.255.255.128 | N/A
+Router (LAN2)| 192.168.10.129 | 255.255.255.128 | N/A
+PC 1         | 192.168.10.10  | 255.255.255.128 | 192.168.10.1
+PC 2         | 192.168.10.11  | 255.255.255.128 | 192.168.10.1
+PC 3         | 192.168.10.12  | 255.255.255.128 | 192.168.10.1
+PC 4         | 192.168.10.13  | 255.255.255.128 | 192.168.10.1
+Printer      | 192.168.10.20  | 255.255.255.128 | 192.168.10.1 (Static)
+Wi-Fi AP     | 192.168.10.30  | 255.255.255.128 | 192.168.10.1
+Wireless 1   | 192.168.10.140 | 255.255.255.128 | 192.168.10.129
+Wireless 2   | 192.168.10.141 | 255.255.255.128 | 192.168.10.129
+
+Role of DHCP:
+Automates network configuration using the DORA process (Discover, Offer, Request, Acknowledge). It dynamically leases IP addresses, subnet masks, gateways, and DNS coordinates to clients, preventing manual configuration errors and IP conflicts.
+
+
+PART 3: ROUTING & PACKET FORWARDING
+-----------------------------------
+Scenario: Wireless Device 1 (192.168.10.140) to External Website (93.184.216.34)
+
+Step-by-Step Packet Path:
+1. Source Verification: Device 1 checks the destination IP against its subnet mask, realizes it is remote, and targets the frame to the gateway MAC (00:1A:2B:3C:4D:01).
+2. L3 Processing: The Router receives the frame, strips Layer 2 info, and inspects the Layer 3 IP header.
+3. TTL Adjustment: The router decrements the Time to Live (TTL) value by 1 to prevent infinite routing loops.
+4. Next-Hop Selection: The router looks up the destination IP in its routing table, matches the default route (0.0.0.0/0), and targets the ISP's upstream hop.
+5. NAT Execution: Because private IPs cannot route publicly, the router applies NAT/PAT. It changes the Source IP from 192.168.10.140 to its public WAN IP (e.g., 203.0.113.5) and links it to a unique tracking port. It logs this in the NAT table to map incoming replies back to the wireless device.
