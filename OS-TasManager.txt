@@ -1,0 +1,101 @@
+OPERATING SYSTEM CORE CONCEPTS CHECKPOINT
+
+PART 1: PROCESS SCHEDULING
+--------------------------
+Processes: P1 (Arr=0, Burst=5), P2 (Arr=1, Burst=3), P3 (Arr=2, Burst=1)
+
+1. FCFS Simulation
+Gantt Chart:
+[   P1   ][  P2  ][P3]
+0        5       8   9
+
+Waiting Times: P1 = 0, P2 = 4, P3 = 6
+Average Waiting Time: (0 + 4 + 6) / 3 = 3.33 time units
+
+2. Round Robin Simulation (Quantum = 2)
+Gantt Chart:
+[ P1 ][ P2 ][P3][ P1 ][P2][P1]
+0    2    4    5    7   8   9
+
+Waiting Times: P1 = 4, P2 = 4, P3 = 2
+Average Waiting Time: (4 + 4 + 2) / 3 = 3.33 time units
+
+Responsiveness Analysis:
+Round Robin is more responsive. It uses preemption to ensure every process gets CPU access within a predictable time slice, preventing short tasks from getting stuck behind long ones (Convoy Effect) as happens in FCFS.
+
+
+PART 2: PROCESS SYNCHRONIZATION
+-------------------------------
+1. Risk (Race Condition):
+Without synchronization, 'counter++' (which takes 3 assembly steps: read, increment, write) can be interrupted. Two processes might read the same old value and overwrite each other's work, resulting in a final counter value lower than 200 and highly unpredictable.
+
+2. Mechanism: Mutex (Mutual Exclusion Lock)
+
+3. Pseudocode:
+shared integer counter = 0
+shared Mutex counterLock
+
+Process_1() {
+    repeat 100 times:
+        acquire(counterLock)
+        counter = counter + 1
+        release(counterLock)
+}
+
+Process_2() {
+    repeat 100 times:
+        acquire(counterLock)
+        counter = counter + 1
+        release(counterLock)
+}
+
+
+PART 3: MEMORY MANAGEMENT
+-------------------------
+String: 1, 2, 3, 2, 4, 1, 5 (3 Frames)
+
+1. FIFO Page Replacement:
+Ref | F1 | F2 | F3 | Outcome
+----------------------------
+ 1  | 1  | -  | -  | Fault
+ 2  | 1  | 2  | -  | Fault
+ 3  | 1  | 2  | 3  | Fault
+ 2  | 1  | 2  | 3  | Hit
+ 4  | 4  | 2  | 3  | Fault (replaces 1)
+ 1  | 4  | 1  | 3  | Fault (replaces 2)
+ 5  | 4  | 1  | 5  | Fault (replaces 3)
+Total FIFO Page Faults: 6
+
+2. LRU Page Replacement:
+Ref | F1 | F2 | F3 | Outcome
+----------------------------
+ 1  | 1  | -  | -  | Fault
+ 2  | 1  | 2  | -  | Fault
+ 3  | 1  | 2  | 3  | Fault
+ 2  | 1  | 2  | 3  | Hit
+ 4  | 4  | 2  | 3  | Fault (replaces 1)
+ 1  | 4  | 2  | 1  | Fault (replaces 3)
+ 5  | 5  | 2  | 1  | Fault (replaces 4)
+Total LRU Page Faults: 6
+
+Performance Analysis:
+Both yield 6 faults here, but LRU performs better generally because it utilizes temporal locality (recently used pages are likely to be used again). FIFO blindly removes the oldest page, risking evicting highly active ones, and suffers from Belady's Anomaly.
+
+
+PART 4: DISK SCHEDULING
+-----------------------
+Start Head: 53
+Queue: 98, 183, 37, 122, 14, 124, 65, 67
+
+1. FCFS Simulation
+Path: 53 -> 98 -> 183 -> 37 -> 122 -> 14 -> 124 -> 65 -> 67
+Calculation: 45 + 85 + 146 + 85 + 108 + 110 + 59 + 2 = 640
+Total FCFS Head Movement: 640 cylinders
+
+2. SSTF Simulation
+Path: 53 -> 65 -> 67 -> 37 -> 14 -> 98 -> 122 -> 124 -> 183
+Calculation: 12 + 2 + 30 + 23 + 84 + 24 + 2 + 59 = 236
+Total SSTF Head Movement: 236 cylinders
+
+Efficiency Conclusion:
+SSTF is vastly more efficient, reducing total head travel by 63% (from 640 down to 236 cylinders) by dynamically servicing the closest request first, avoiding the wild back-and-forth swings of FCFS.
