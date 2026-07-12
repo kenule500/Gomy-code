@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import UserList from './UserList.jsx';
 
 class App extends Component {
   // Step 1: Initialize the state with the Person object and the toggle boolean
@@ -61,6 +62,8 @@ class App extends Component {
 
         <hr />
         <h4>Time since component mounted: {this.state.timeSinceMount} seconds</h4>
+
+        <UserList />
       </div>
     );
   }
