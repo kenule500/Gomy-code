@@ -1,0 +1,136 @@
+/* Core Layout Standardizations */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.weather-container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+}
+
+h1 {
+  color: #1e3c72;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* Input Search Box Components */
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+#city-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#city-input:focus {
+  border-color: #2a5298;
+}
+
+#search-btn {
+  background-color: #2a5298;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+#search-btn:hover {
+  background-color: #1e3c72;
+}
+
+/* Dynamic Content Display Modules */
+.weather-info h2 {
+  color: #333;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.temp-display {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #2a5298;
+  margin: 15px 0;
+}
+
+#weather-description {
+  text-transform: capitalize;
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
+
+.extra-details {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-item .label {
+  font-size: 0.85rem;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.detail-item .value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Helper Utility States */
+.error-box {
+  background-color: #ffeef0;
+  color: #d9383a;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 400px) {
+  .weather-container {
+    padding: 20px;
+  }
+  .temp-display {
+    font-size: 2.8rem;
+  }
+}

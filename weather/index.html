@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimal Weather App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="weather-container">
+    <header>
+      <h1>Weather Radar</h1>
+      <div class="search-box">
+        <input type="text" id="city-input" placeholder="Enter city name..." autocomplete="off">
+        <button id="search-btn">Search</button>
+      </div>
+    </header>
+
+    <main id="weather-info" class="weather-info hidden">
+      <h2 id="location-name">New York, US</h2>
+      <div class="temp-display">
+        <span id="temperature">24</span>°C
+      </div>
+      <p id="weather-description">Scattered Clouds</p>
+      
+      <div class="extra-details">
+        <div class="detail-item">
+          <span class="label">Humidity</span>
+          <span id="humidity" class="value">64%</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Wind Speed</span>
+          <span id="wind-speed" class="value">12 km/h</span>
+        </div>
+      </div>
+    </main>
+
+    <div id="error-message" class="error-box hidden">
+      <p>City not found. Please try another location.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
