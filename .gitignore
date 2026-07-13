@@ -11,3 +11,5 @@ slackbolt/.env
 checkpoint61/node_modules
 portfolio/node_modules
 debug-demo/node_modules
+life-cycle/node_modules
+nodejs-demo/node_modules
