@@ -1,0 +1,12 @@
+
+
+1- No T2 cannot acquire an exclusive lock (x-lock)
+ - Reason: At time t1, Transaction T1 holds a shared lock(S-lock) on Account #5. According to lock compactibility rules, 
+ an exclusive lock (x-lock) is incompatible with an existing shared lock (S-lock). Therefore, T2 is forced to wait until T1 releases its S-lock.
+
+
+2 YES T3 cannot acquire a shared lock at t3
+ - Reason: Although multiple sahred locks (s-locks) are compactible with each others, T2 requested an X-lock at t2 and is already waiting in the lock queue.
+
+3. - At time t4, T1 commists and releases it's shared lock (s-lock) on Account #5
+   - This unblocks the lock queue. Since T2 was next in line requesting an exclusive lock (x-lock), the database manager grants the x-locks to T2

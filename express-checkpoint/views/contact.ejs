@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+    <a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>">Home</a>
+    <a href="/services" class="<%= currentPage === 'services' ? 'active' : '' %>">Our Services</a>
+    <a href="/contact" class="<%= currentPage === 'contact' ? 'active' : '' %>">Contact Us</a>
+  </nav>
+
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p>Have a question or want to start a project? Fill out the form below and our team will reach out.</p>
+
+    <form class="contact-form" action="/contact" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="subject" placeholder="Subject">
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="contact-info">
+      <div><strong>Email:</strong> hello@ourcompany.com</div>
+      <div><strong>Phone:</strong> +1 (555) 123-4567</div>
+      <div><strong>Address:</strong> 123 Main Street, Suite 400, NY 10001</div>
+    </div>
+  </div>
+</body>
+</html>

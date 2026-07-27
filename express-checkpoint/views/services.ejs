@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+    <a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>">Home</a>
+    <a href="/services" class="<%= currentPage === 'services' ? 'active' : '' %>">Our Services</a>
+    <a href="/contact" class="<%= currentPage === 'contact' ? 'active' : '' %>">Contact Us</a>
+  </nav>
+
+  <div class="container">
+    <h1>Our Services</h1>
+    <div class="services-grid">
+      <div class="service-card">
+        <h2>Web Development</h2>
+        <p>Custom websites and web applications built with modern technologies.</p>
+      </div>
+      <div class="service-card">
+        <h2>Mobile Apps</h2>
+        <p>iOS and Android apps with seamless user experiences for your audience.</p>
+      </div>
+      <div class="service-card">
+        <h2>Cloud Solutions</h2>
+        <p>Scalable cloud infrastructure, migration and management services.</p>
+      </div>
+      <div class="service-card">
+        <h2>UI/UX Design</h2>
+        <p>User-centric interfaces designed to engage and delight your customers.</p>
+      </div>
+      <div class="service-card">
+        <h2>SEO Optimization</h2>
+        <p>Improve your search rankings and attract organic traffic to your site.</p>
+      </div>
+      <div class="service-card">
+        <h2>Consulting</h2>
+        <p>Expert technical guidance to align technology with your business strategy.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
