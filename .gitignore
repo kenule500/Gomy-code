@@ -15,5 +15,5 @@ life-cycle/node_modules
 nodejs-demo/node_modules
 nodejs-exercises/node_modules
 express-checkpoint/node_modules
-express-checkpoint/node_modules
 task-manager-api/node_modules
+task-manager-api/.env
